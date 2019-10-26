@@ -1,0 +1,36 @@
+.reimb-create {
+    margin: auto;
+    width: 750px;
+    max-width: 750px;
+    border: 3px solid #00137e;
+    padding: 20px;
+}
+
+.account-viewer, .reimb-form {
+    text-align: center;
+}
+
+.custom-search-bar {
+    text-align: right;
+}
+
+.account-table {
+    width: 50%
+}
+
+.reimb-table-desc {
+    width: 800px;
+    word-wrap: break-word;
+}
+
+.reimb-denied {
+    color: #a00000;
+}
+
+.reimb-approved {
+    color: #00a000;
+}
+
+#reimb-header {
+    text-align: center;
+}

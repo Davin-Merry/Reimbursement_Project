@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="UTF8">
+		<title>Login Page</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<style type="text/css">
+			.login-form {
+				width: 340px;
+				margin: 50px auto;
+			}
+			.login-form form {
+				margin-bottom: 15px;
+				background: #f7f7f7;
+				box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+				padding: 30px;
+			}
+			.login-form h2 {
+				margin: 0 0 15px;
+			}
+			.form-control, .btn {
+				min-height: 38px;
+				border-radius: 2px;
+			}
+			.btn {        
+				font-size: 15px;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+
+	<!--
+		Borrowed from:
+		https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=simple-login-form
+	-->
+	<body onload="reset()">
+		<div class="login-form">
+			<form action="/Project1/user/login" method="post">
+				<h3 class="text-center">Reimbursement System<br><br>Log in</h3>       
+				<div class="form-group">
+					<input type="text" id="u" name="user" class="form-control" placeholder="Username" required="required">
+				</div>
+				<div class="form-group">
+					<input type="password" id="p" name="pass" class="form-control" placeholder="Password" required="required">
+				</div>
+				<div class="form-group">
+					<button onclick="storeName()" type="submit" class="btn btn-primary btn-block" id="loginsubmit">Log in</button>
+				</div>       
+			</form>
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+		<!-- Custom script(s) below -->
+		<script src="/Project1/main/login.js"></script>
+	</body>
+</html>

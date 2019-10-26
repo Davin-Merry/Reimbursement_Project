@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="UTF8">
+		<title>Manager Page</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+		<link rel="stylesheet" href="../menu/common.css" type="text/css">
+	</head>
+	
+	<body onload="getUserInfo()">
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<a class="nav-item nav-link active" id="nav-view-tab" data-toggle="tab" href="#nav-view" role="tab" aria-controls="nav-view" aria-selected="true">View</a>
+				<a class="nav-item nav-link" id="nav-account-info-tab" data-toggle="tab" href="#nav-account-info" role="tab" aria-controls="nav-account-info" aria-selected="false">Account Info</a>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-view" role="tabpanel" aria-labelledby="nav-view-tab">
+				<!-- Reimbursement Viewer -->
+				<!-- Allows for viewing and approving/denying submitted reimbursements -->
+				<!-- JavaScript will fetch this information after login -->
+				<h4 id="reimb-header">All Reimbursements</h4>
+				<div class="reimb-form">
+					<input type="submit" id="reimb-submit-change" class="btn btn-secondary btn" value="Submit Changes" disabled>
+					<h6 id="reimb-submit-status" style="display: none;">Changes saved successfully!</h6>
+				</div>
+				<div class="custom-search-bar">
+					<select id="reimb-status-selector">
+						<option value="">View All</option>
+						<option>Pending</option>
+						<option>Approved</option>
+						<option>Denied</option>
+					</select>
+				</div>
+				<div id="reimb-viewer">
+					<table id="reimb-main-table" class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">ID</th>
+								<th scope="col">Amount</th>
+								<th scope="col">Submitted On</th>
+								<th scope="col">Submitted By</th>
+								<th scope="col">Resolved On</th>
+								<th scope="col">Resolved By</th>
+								<th scope="col">Type</th>
+								<th scope="col">Description</th>
+								<th scope="col">Status</th>
+							</tr>
+						</thead>
+						<tbody id = "reimb-dyn-table">
+							<!-- Data will be filled up after JavaScript finds the information it needs -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="nav-account-info" role="tabpanel" aria-labelledby="nav-account-info-tab">
+				<!-- Account Viewer -->
+				<!-- Lets the user view information about their own account. -->
+				<!-- For the manager, it only shows username, e-mail, and name. -->
+				<h4 id="reimb-header">Account Information</h4>
+				<div id="account-viewer">
+					<table class="table" style="margin: 0px auto; width: 600px;">
+						<tbody>
+							<tr>
+								<th scope="row">Username: </th>
+								<td id="info-username"></td>
+							</tr>
+							<tr>
+								<th scope="row">E-mail: </th>
+								<td id="info-email"></td>
+							</tr>
+							<tr>
+								<th scope="row">Name: </th>
+								<td id="info-fullname"></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<form class="reimb-form" action="/Project1/user/logout" method="post">
+						<input type="submit" class="btn btn-primary btn-sm" value="Logout">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+
+		<!-- Custom script(s) below -->
+		<script src="/Project1/menu/manager.js"></script>
+	</body>
+</html>

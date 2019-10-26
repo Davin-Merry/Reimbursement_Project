@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="UTF8">
+		<title>Employee Page</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+		<link rel="stylesheet" href="../menu/common.css" type="text/css">
+	</head>
+	
+	<body onload="getUserInfo()">
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<a class="nav-item nav-link" id="nav-create-tab" data-toggle="tab" href="#nav-create" role="tab" aria-controls="nav-create" aria-selected="false">Create</a>
+				<a class="nav-item nav-link active" id="nav-view-tab" data-toggle="tab" href="#nav-view" role="tab" aria-controls="nav-view" aria-selected="true">View</a>
+				<a class="nav-item nav-link" id="nav-account-tab" data-toggle="tab" href="#nav-account" role="tab" aria-controls="nav-account" aria-selected="false">Account Info</a>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
+				<!-- Reimbursement Creator -->
+				<!-- Allows the employee to view the reimbursements that were created. -->
+				<h4 id="reimb-header">Create Reimbursement</h4>
+				<div id="reimb-creator">
+					<form class="reimb-create">
+						<div class="reimb-subcreate">
+							<label for="reimb-amount">Reimbursement Amount:</label>
+							$<input type="number" onkeyup="validAmt(this.value)" min="1.00" step="0.01" max="5000.00" id="reimb-amt" placeholder="10.00">
+						</div>
+						<div class="reimb-subcreate">
+							<label for="reimb-type">Reimbursement Type:</label>
+							<select class="form-control" id="reimb-type">
+								<option value="0">Lodging</option>
+								<option value="1">Travel</option>
+								<option value="2">Food</option>
+								<option value="3">Other</option>
+							</select>
+						</div>
+						<div class="reimb-subcreate">
+							<label for="reimb-description" id="reimb-char-count">Description (0/250):</label>
+							<textarea onkeyup="charCount(this.value)" maxlength="250" style="resize: none;" class="form-control" id="reimb-desc" rows="3"></textarea>
+						</div>
+						<div class="reimb-subcreate">
+							<input type="button" id="reimb-allow" value="Submit Reimbursement" disabled="true">
+						</div>
+					</form>
+				</div>
+				<h6 id="reimb-submit-status" style="text-align: center; display: none">Submitted successfully!</h6>
+			</div>
+
+			<div class="tab-pane fade show active" id="nav-view" role="tabpanel" aria-labelledby="nav-view-tab">
+				<!-- Reimbursement Viewer -->
+				<!-- Allows for viewing previously submitted reimbursements -->
+				<!-- JavaScript will fetch this information after login -->
+				<h4 id="reimb-header">Past Reimbursements</h4>
+				<div id="reimb-viewer">
+					<table id="reimb-main-table" class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">ID</th>
+								<th scope="col">Amount</th>
+								<th scope="col">Submitted On</th>
+								<th scope="col">Resolved On</th>
+								<th scope="col">Resolved By</th>
+								<th scope="col">Type</th>
+								<th scope="col">Description</th>
+								<th scope="col">Status</th>
+							</tr>
+						</thead>
+						<tbody id = "reimb-dyn-table">
+							<!-- Data will be filled up after JavaScript finds the information it needs -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="tab-pane fade" id="nav-account" role="tabpanel" aria-labelledby="nav-account-tab">
+				<!-- Account Viewer -->
+				<!-- Lets the user view information about their own account. -->
+				<!-- This simply views things like their username, full name, email, and amount of reimbursements created. -->
+				<h4 id="reimb-header">Account Information</h4>
+				<div id="account-viewer">
+					<table class="table" style="margin: 0px auto; width: 600px;">
+						<tbody>
+							<tr>
+								<th scope="row">Username: </th>
+								<td id="info-username"></td>
+							</tr>
+							<tr>
+								<th scope="row">E-mail: </th>
+								<td id="info-email"></td>
+							</tr>
+							<tr>
+								<th scope="row">Name: </th>
+								<td id="info-fullname"></td>
+							</tr>
+							<tr>
+								<th scope="row">Reimbursements Submitted: </th>
+								<td id="info-reimb-count"></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<form class="reimb-form" action="/Project1/user/logout" method="post">
+						<input type="submit" class="btn btn-primary btn-sm" value="Logout">
+					</form>
+				</div>
+			</div>
+
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+
+		<!-- Custom script(s) below -->
+		<script src="/Project1/menu/employee.js"></script>
+	</body>
+</html>
